@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BulkMailController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site.index');
-});
+Route::get('/', [UsersController::class, 'index']);
 
 Route::get('send-emails', [BulkMailController::class, 'sendMail'])->name('send-mails');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

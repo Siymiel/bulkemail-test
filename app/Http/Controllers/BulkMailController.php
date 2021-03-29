@@ -21,7 +21,6 @@ class BulkMailController extends Controller
 
         dispatch($job);
 
-
-        return redirect::route('send-emails', compact('users'));
+        echo('Bulk emails have sent to in the background...');
     }
 }
