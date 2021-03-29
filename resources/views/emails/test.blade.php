@@ -8,7 +8,6 @@
 </head>
 <body>
     <h2>This is my test bulk mail.</h2>
-    <p></p>
     <p>Thank you</p>
 </body>
 </html>

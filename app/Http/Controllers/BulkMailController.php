@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class BulkMailController extends Controller
 {
-    public function sendMail(Request $request) {
+    public function sendMail(Request $request, User $users) {
         $data = [
     		'subject' => 'Monthly Notification'
     	];
+        $users = User::all();
+        
 
     	// send all mail in the queue.
         $job = (new \App\Jobs\SendBulkQueueEmail($data))
@@ -18,6 +22,6 @@ class BulkMailController extends Controller
         dispatch($job);
 
 
-        return view('site.index');
+        return redirect::route('send-emails', compact('users'));
     }
 }
