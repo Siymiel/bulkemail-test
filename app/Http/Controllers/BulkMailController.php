@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Jobs\SendBulkQueueEmail;
 use Illuminate\Support\Facades\Redirect;
 
 class BulkMailController extends Controller
@@ -12,11 +13,10 @@ class BulkMailController extends Controller
         $data = [
     		'subject' => 'Monthly Notification'
     	];
-        $users = User::all();
         
 
     	// send all mail in the queue.
-        $job = (new \App\Jobs\SendBulkQueueEmail($data))
+        $job = (new SendBulkQueueEmail($data))
             ->delay(now()->addSeconds(2)); 
 
         dispatch($job);
